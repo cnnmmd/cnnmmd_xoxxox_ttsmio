@@ -1,0 +1,17 @@
+networks:
+  default:
+    name: xoxxox_netmid
+    external: true
+services:
+  xoxxox_ttsmio:
+    image: xoxxox/envmio:001
+    container_name: xoxxox_ttsmio
+    volumes:
+    - ../../../export:/opt/common
+    - ../../../import/cnnmmd_xoxxox_ttsmio/appmio:/opt/appmio
+    - ../../../import/cnnmmd_xoxxox_ttsmio/appmio/hgf:/root/.cache/huggingface    
+    env_file:
+    - ./envdir.txt
+    ports:
+    - 12202:80
+    command: bash -c "/opt/common/bin/xoxxox/runmio.sh & /env/python/bin/python /opt/common/bin/xoxxox/srvtts.py --engine xoxxox/engine_ttsmio --gensyn 0"
