@@ -9,8 +9,10 @@ pthapp="${pthsrc}"/appmio
 pthhgf="${pthapp}/hgf"
 pthprm="${pthapp}/prm"
 pthprj="${pthapp}/MioTTS-Inference"
+pthprk="${pthapp}/MioCodec"
 cntapp='/opt/appmio'
 cntprj="${cntapp}/MioTTS-Inference"
+cntprk="${cntapp}/MioCodec"
 
 addimg ${imgtgt} "${cnfimg}" "${pthdoc}"
 test -d "${pthapp}" || mkdir "${pthapp}"
@@ -19,9 +21,10 @@ test -d "${pthprm}" || mkdir "${pthprm}"
 if cd "${pthapp}"
 then
   test -d "${pthprj}" || git clone --depth 1 https://github.com/Aratako/MioTTS-Inference.git
+  test -d "${pthprk}" || git clone --depth 1 https://github.com/Aratako/MioCodec
 fi
 
-docker run -v "${pthapp}":"${cntapp}" --name ${cnttgt} ${imgtgt} /exp/runcfg.sh "${cntprj}" && \
+docker run -v "${pthapp}":"${cntapp}" --name ${cnttgt} ${imgtgt} /exp/runcfg.sh "${cntprj}" "${cntprk}" && \
 docker commit ${cnttgt} ${imgtgt} && \
 docker stop ${cnttgt} && \
 docker rm ${cnttgt}
