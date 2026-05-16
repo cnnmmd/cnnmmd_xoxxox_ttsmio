@@ -1,14 +1,13 @@
 FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PTHEXP="/exp"
+RUN mkdir ${PTHEXP}
+COPY --chmod=755 runcfg.sh ${PTHEXP}
 RUN \
   apt-get update && \
   apt-get upgrade -y && \
-  apt-get install -y --no-install-recommends ca-certificates python3 curl git && \
+  apt-get install -y --no-install-recommends ca-certificates curl git && \
   apt-get install -y --no-install-recommends python3-dev build-essential cmake && \
   rm -rf /var/lib/apt/lists/*
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-ENV DIRLOC=/root/.local
-ENV DIRPYT=/env/python
-RUN ${DIRLOC}/bin/uv venv ${DIRPYT}
-RUN ${DIRLOC}/bin/uv pip install --python ${DIRPYT}/bin/python --no-cache-dir aiohttp
