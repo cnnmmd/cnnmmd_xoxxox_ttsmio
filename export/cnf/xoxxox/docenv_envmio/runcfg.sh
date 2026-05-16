@@ -5,6 +5,7 @@ pthloc='/root/.local'
 
 cd "${cntprj}" && \
 cp pyproject.toml pyproject_old.toml && \
+sed -i '/^dependencies = \[/a\    "torch",\n    "torchaudio",' pyproject.toml && \
 sed -i '$a\
 [tool.uv.sources]\
 torch = [{ index = "pytorch-cpu" }]\
