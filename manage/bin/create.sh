@@ -21,7 +21,7 @@ then
   test -d "${pthprj}" || git clone --depth 1 https://github.com/Aratako/MioTTS-Inference.git
 fi
 
-docker run -v "${pthapp}":"${cntapp}" --name ${cnttgt} ${imgtgt} sh -c "cd ${cntprj} && /root/.local/bin/uv sync --python /env/python/bin/python" && \
+docker run -v "${pthapp}":"${cntapp}" --name ${cnttgt} ${imgtgt} /exp/runcfg.sh "${cntprj}" && \
 docker commit ${cnttgt} ${imgtgt} && \
 docker stop ${cnttgt} && \
 docker rm ${cnttgt}

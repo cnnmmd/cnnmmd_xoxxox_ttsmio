@@ -1,4 +1,5 @@
 import json
+import subprocess
 import aiohttp
 from xoxxox.shared import Custom
 
@@ -8,7 +9,7 @@ class TtsPrc():
 
   def __init__(self, config="xoxxox/config_ttsmic_000", **dicprm):
     diccnf = Custom.update(config, dicprm)
-    self.adrsrv = "http://127.0.0.1:8001/v1/tts"
+    self.adrtts = diccnf["adrtts"]
 
   def status(self, config="xoxxox/config_ttsmic_000", **dicprm):
     diccnf = Custom.update(config, dicprm)
@@ -27,7 +28,7 @@ class TtsPrc():
     }
     async with aiohttp.ClientSession() as s:
       async with s.post(
-        self.adrsrv,
+        self.adrtts,
         json=dicreq,
         headers={"Content-Type": "application/json"},
       ) as r:

@@ -14,4 +14,4 @@ services:
     - ./envdir.txt
     ports:
     - 12202:80
-    command: bash -c "/opt/common/bin/xoxxox/runmio.sh & /env/python/bin/python /opt/common/bin/xoxxox/srvtts.py --engine xoxxox/engine_ttsmio --gensyn 0"
+    command: bash -c "/opt/common/bin/xoxxox/runmio.sh http://host.docker.internal:8000/v1 & /opt/appiro/MioTTS-Inference/.venv/bin/python /opt/common/bin/xoxxox/srvtts.py --engine xoxxox/engine_ttsmio --gensyn 0"
