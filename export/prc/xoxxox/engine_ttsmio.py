@@ -7,11 +7,11 @@ from xoxxox.shared import Custom
 
 class TtsPrc():
 
-  def __init__(self, config="xoxxox/config_ttsmic_000", **dicprm):
+  def __init__(self, config="xoxxox/config_ttsmio_000", **dicprm):
     diccnf = Custom.update(config, dicprm)
     self.adrtts = diccnf["adrtts"]
 
-  def status(self, config="xoxxox/config_ttsmic_000", **dicprm):
+  def status(self, config="xoxxox/config_ttsmio_000", **dicprm):
     diccnf = Custom.update(config, dicprm)
     self.keyspk = diccnf["keyspk"]
 
