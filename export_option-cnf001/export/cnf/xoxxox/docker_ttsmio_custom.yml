@@ -1,0 +1,4 @@
+
+services:
+  xoxxox_ttsmio:
+    command: bash -c "/opt/common/bin/xoxxox/runmio.sh http://xoxxox_applsv:80/v1 & /opt/appmio/MioTTS-Inference/.venv/bin/python /opt/common/bin/xoxxox/srvtts.py --engine xoxxox/engine_ttsmio --gensyn 0"
